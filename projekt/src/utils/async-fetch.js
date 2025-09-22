@@ -1,7 +1,7 @@
 // Taget fra tidligere opgave.
-export default async function asyncFetch(url, options = {}) {
+export default async function asyncFetch(endpoint, options = {}) {
   try {
-    const response = await fetch(url, options);
+    const response = await fetch(`http://localhost:4000/api/v1/${endpoint}`, options);
 
     if (!response.ok) {
       throw new Error("Der opstod en fejl");
