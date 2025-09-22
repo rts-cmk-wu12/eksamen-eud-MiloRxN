@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: optional;
+  src: url("/fonts/inter-variablefont.ttf") format("TrueType");
+}
+
+
+body {
+  font-family: "Inter";
+}
+
+@theme inline {
+
+  /* Colors */
+  --color-primary: #000;
+  --color-secondary: #fff;
+  --color-gray: #e3e3e3;
+  --color-black: #2c2c2c;
+  --color-black2: #1e1e1e;
+  --color-light-gray: #f5f5f5;
+  --color-ash: #b3b3b3;
+  --color-silver: #757575;
+  --color-gray2: #d9d9d9;
+
+  /* Text */
+  --color-text-primary: var(--color-primary);
+  --color-text-secondary: var(--color-secondary);
+
+  /* Button */
+  --color-button-primary: var(--color-black);
+  --color-button-primary-text: var(--color-light-gray);
+  --color-button-primary-border: var(--color-black);
+  --color-button-secondary: var(--color-gray);
+  --color-button-secondary-text: var(--color-black2);
+  --color-button-secondary-border: var(--color-silver);
+  --radius-button: 8px;
+
+  /* Links */
+  --color-active-link-background: var(--color-light-gray);
+  --radius-active-link: 8px;
+
+  /* Search */
+  --color-search-border: var(--color-gray2);
+  --color-search-placeholder: var(--color-ash);
+ 
+  /* Product card */
+  --radius-product-card: 8px;
+  /* --color-product-card-text: var() */
+}
+
+
+@layer base {
+  h1,h2,h3,h4,h5,h6 {
+    @apply font-bold
+  }
+}
+
+@layer components {
+
+  .active-link {
+    @apply bg-active-link-background rounded-active-link p-2;
+  }
+
+  .button-primary {
+    @apply rounded-button border-2 border-button-primary-border px-3 py-1 text-button-primary-text bg-button-primary;
+  }
+  .button-secondary {
+    @apply rounded-button border-2 border-button-secondary-border px-3 py-1 text-button-secondary-text bg-button-secondary;
+  }
+}
