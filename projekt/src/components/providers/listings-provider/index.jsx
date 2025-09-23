@@ -56,9 +56,13 @@ export default function ListingsProvider({ children, products = [], productsPerP
       case "old":
         return new Date(a.createdAt || a.updatedAt) - new Date(b.createdAt || b.updatedAt);
       case "az":
-        return a.title.localeCompare(b.title);
+        if (a.title > b.title) return 1;
+        if (a.title < b.title) return -1;
+        return 0;
       case "za":
-        return b.title.localeCompare(a.title);
+        if (a.title < b.title) return 1;
+        if (a.title > b.title) return -1;
+        return 0;
       case "new":
       default:
         return new Date(b.createdAt || b.updatedAt) - new Date(a.createdAt || a.updatedAt);

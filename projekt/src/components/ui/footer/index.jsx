@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="p-8 pb-12 border-t-2 border-gray2 grid grid-cols-4">
       <div className="space-y-3">
         <span className="flex items-center gap-2">
-          <Image src={"/icons/logo.svg"} height={48} width={48} alt="Logo af SwapHub" />
+          <Image src={"/icons/logo.svg"} height={48} width={48} alt="Logo of SwapHub" />
           SwapHub
         </span>
 

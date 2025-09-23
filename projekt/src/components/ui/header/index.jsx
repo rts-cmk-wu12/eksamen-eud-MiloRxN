@@ -9,7 +9,7 @@ export default function Header() {
   return (
     <header className="flex items-center justify-between p-8 border-b-2 border-gray2">
       <Link href={"/"} className="flex gap-2 items-center">
-        <Image src={"/icons/logo.svg"} height={48} width={48} alt="Logo af SwapHub" />
+        <Image src={"/icons/logo.svg"} height={48} width={48} alt="Logo of SwapHub" />
         <h1>SwapHub</h1>
       </Link>
 
