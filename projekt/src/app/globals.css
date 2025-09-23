@@ -1,3 +1,4 @@
+
 @import "tailwindcss";
 
 @font-face {
@@ -11,6 +12,7 @@
 
 body {
   font-family: "Inter";
+  @apply text-base;
 }
 
 @theme inline {
@@ -46,10 +48,25 @@ body {
   /* Search */
   --color-search-border: var(--color-gray2);
   --color-search-placeholder: var(--color-ash);
+  --color-search-icon: var(--color-black2);
  
+  /* Pagination */
+  --color-pagination-current: var(--color-black);
+  --color-pagination-current-text: var(--color-light-gray);
+  --color-pagination-text: var(--color-black2);
+  --color-pagination-button-disabled: var(--color-silver);
+  --color-pagination-button: var(--color-black2);
+
+  /* Filters */
+  --color-filter-active-background: var(--color-black);
+  --color-filter-active-text: var(--color-light-gray);
+  --color-filter-inactive-background: var(--color-light-gray);
+  --color-filter-inactive-text: var(--color-silver);
+
   /* Product card */
   --radius-product-card: 8px;
-  /* --color-product-card-text: var() */
+  --color-product-card-border: var(--color-gray2);
+  --color-product-card-text: var(--color-black2);
 }
 
 
@@ -68,7 +85,36 @@ body {
   .button-primary {
     @apply rounded-button border-2 border-button-primary-border px-3 py-1 text-button-primary-text bg-button-primary;
   }
+
   .button-secondary {
     @apply rounded-button border-2 border-button-secondary-border px-3 py-1 text-button-secondary-text bg-button-secondary;
+  }
+
+  .pagination-current {
+    background: var(--color-pagination-current);
+    color: var(--color-pagination-current-text);
+  }
+
+  .pagination-default {
+    color: var(--color-pagination-text);
+  }
+
+  .pagination-button--disabled {
+    color: var(--color-pagination-button-disabled);
+  }
+  .pagination-button {
+    color: var(--color-pagination-button);
+  }
+
+  .filter-active {
+    color: var(--color-filter-active-text);
+    background: var(--color-filter-active-background);
+    border: var(--color-filter-active-background);
+  }
+  
+  .filter-inactive {
+    color: var(--color-filter-inactive-text);
+    background: var(--color-filter-inactive-background);
+    border-color: var(--color-filter-inactive-background);
   }
 }

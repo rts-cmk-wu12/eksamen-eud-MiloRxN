@@ -1,3 +1,7 @@
+import ListingsProvider from "@/components/providers/listings-provider";
+import Card from "@/components/ui/cards/listings-card";
+import ListingsSearchSort from "@/components/ui/forms/search-sort";
+import Grid from "@/components/ui/grid";
 import asyncFetch from "@/utils/async-fetch";
 
 export const metadata = {
@@ -6,14 +10,17 @@ export const metadata = {
 
 export default async function Home() {
 
-  const data = await asyncFetch("listings")
-  console.log(data)
+  const products = await asyncFetch("listings")
+  console.log(products)
 
   return (
     <>
-    <div className="grid grid-cols-3 grid-rows-2">
-      
-    </div>
+      <ListingsProvider products={products} productsPerPage={6}>
+        <ListingsSearchSort />
+        <Grid pagination={true} columns={3}>
+          <Card />
+        </Grid>
+      </ListingsProvider>
     </>
   );
 }
