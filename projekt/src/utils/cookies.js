@@ -1,8 +1,8 @@
+
 import { cookies } from "next/headers";
 
-const cookieStore = await cookies()
-
-export function readCookie(name = "") {
+export async function readCookie(name = "") {
+  const cookieStore = await cookies();
   const cookie = cookieStore.get(name);
 
   if (!cookie) return null;

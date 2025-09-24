@@ -1,5 +1,7 @@
+import ProposeButton from "@/components/ui/buttons/propose";
 import RelatedProducts from "@/components/ui/related-products";
 import asyncFetch from "@/utils/async-fetch";
+import { readCookie } from "@/utils/cookies";
 import Image from "next/image";
 
 export async function generateMetadata({ params }) {
@@ -14,6 +16,8 @@ export async function generateMetadata({ params }) {
 export default async function ProductDetails({ params }) {
   const { id } = await params;
   const product = await asyncFetch(`listings/${id}`);
+
+  const userId = await readCookie("sh_user_id")
 
   const formattedTime = product.asset.createdAt.split("T")[0];
 
@@ -38,7 +42,7 @@ export default async function ProductDetails({ params }) {
           <h1>{product.title}</h1>
           <p>{product.description}</p>
           <span>On SwapHub since: {formattedTime}</span>
-          <button>Propose a swap</button>
+          {userId && userId !== product.userId && <ProposeButton userId={userId} product={product} />}
         </section>
       </article>
 

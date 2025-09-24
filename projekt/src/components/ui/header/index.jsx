@@ -1,10 +1,12 @@
 import NavLink from "@/components/typography/nav-link";
+import { readCookie } from "@/utils/cookies";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "../button";
 
 
-export default function Header() {
+export default async function Header() {
+
+  const userId = await readCookie("sh_user_id")
 
   return (
     <header className="flex items-center justify-between p-8 border-b-2 border-gray2">
@@ -33,12 +35,25 @@ export default function Header() {
         </ul>
 
         <div className="space-x-4">
-          <Button className="button-secondary">
-            Sign in
-          </Button>
-          <Button className="button-primary">
-            Register
-          </Button>
+          {userId ? (
+            <>
+              <NavLink path={"/profile"} className="button-secondary">
+                profile
+              </NavLink>
+              <NavLink path={"/logout"} className="button-primary">
+                Logout
+              </NavLink>
+            </>
+          ) : (
+            <>
+              <NavLink path={"/login"} className="button-secondary">
+                Sign in
+              </NavLink>
+              <NavLink path={"#"} className="button-primary">
+                Register
+              </NavLink>
+            </>
+          )}
         </div>
       </nav>
     </header>

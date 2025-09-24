@@ -1,77 +1,66 @@
 // Taget fra tidligere projekt.
 "use server"
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import z from "zod";
 
 export default async function loginAction(prevState, formData){
   console.log(formData);
-  const { username, password } = Object.fromEntries(formData);
+  const { email, password } = Object.fromEntries(formData);
   
   const schema = z.object({
-    username: z.string().min(1, { message: "Du skal udfylde et brugernavn" }),
-    password: z.string().min(1, { message: "Du skal udfylde en adgangskode" })
+    email: z.email({ message: "Email is required" }),
+    password: z.string().min(1, { message: "Password is required" })
   })
 
   const validated = schema.safeParse({
-    username, password
-  })
+    email, password
+  });
 
   if (!validated.success) return {
     ...validated,
-    ...z.treeifyError(validated.error),
+    ...(z.treeifyError(validated.error)),
     data: {
-      username,
+      email,
       password
     }
-  }
+  };
 
-  const response = await fetch(`${process.env.API_AUTH_URL}`, {
-    method: "POST", 
+  const response = await fetch('http://localhost:4000/auth/token', {
+    method: 'POST',
     headers: {
-      "content-type": "application/json"
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      username: validated.data.username,
+      email: validated.data.email,
       password: validated.data.password
     })
-  })
+  });
 
   // guard clause
   if (!response.ok) return {
     success: false,
-    errors: ["Forkert brugernavn eller adgangskode"],
+    errors: ["Email or password is invalid"],
     data: {
-      username,
+      email,
       password
     }
   }
 
-  const json = await response.json();
+  const data = await response.json();
 
-  const cookieStore = await cookies()
+  const cookieStore = await cookies();
+  cookieStore.set({
+    name: 'sh_access_token',
+    value: data.token,
+    expires: data.validUntil
+  });
 
   cookieStore.set({
-    name: "ld_token",
-    value: json.token,
-  })
+    name: 'sh_user_id',
+    value: data.userId,
+    expires: data.validUntil
+  });
 
-  cookieStore.set({
-    name: "ld_userid",
-    value: json.userId,
-  })
-
-  cookieStore.set({
-    name: "ld_userrole",
-    value: json.role,
-  })
-
-  // redirect("/")
-
-  return {
-    success: true,
-    data: {
-      username,
-      password
-    }
-  }
+  redirect("/")
 }

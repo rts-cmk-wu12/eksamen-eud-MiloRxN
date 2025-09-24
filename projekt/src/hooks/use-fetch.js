@@ -4,13 +4,13 @@
 import asyncFetch from "@/utils/async-fetch";
 import { useEffect, useState } from "react";
 
-export default function useFetch(url) {
+export default function useFetch(endpoint) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(function () {
-    asyncFetch(url, options)
+    asyncFetch(endpoint)
       .then(data => setData(data))
       .catch(error => setError(error))
       .finally(() => setLoading(false))

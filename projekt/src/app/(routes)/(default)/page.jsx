@@ -11,7 +11,7 @@ export const metadata = {
 export default async function Home() {
 
   const products = await asyncFetch("listings")
-  console.log(products)
+  // console.log(products)
 
   return (
     <>
