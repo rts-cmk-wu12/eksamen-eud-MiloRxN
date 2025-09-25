@@ -1,4 +1,3 @@
-
 @import "tailwindcss";
 
 @font-face {
@@ -28,10 +27,12 @@ body {
   --color-silver: #757575;
   --color-gray2: #d9d9d9;
 
+  --radius-default: 0.5rem;
+
   /* Text */
   --color-text-primary: var(--color-primary);
   --color-text-secondary: var(--color-secondary);
-  --text-heading-large: 1.625rem; /* 26px */
+  --text-heading-large: 1.625rem;
 
   /* Button */
   --color-button-primary: var(--color-black);
@@ -40,17 +41,17 @@ body {
   --color-button-secondary: var(--color-gray);
   --color-button-secondary-text: var(--color-black2);
   --color-button-secondary-border: var(--color-silver);
-  --radius-button: 8px;
+  --radius-button: var(--radius-default);
 
   /* Links */
   --color-active-link-background: var(--color-light-gray);
-  --radius-active-link: 8px;
+  --radius-active-link: var(--radius-default);
 
   /* Search */
   --color-search-border: var(--color-gray2);
   --color-search-placeholder: var(--color-ash);
   --color-search-icon: var(--color-black2);
- 
+
   /* Pagination */
   --color-pagination-current: var(--color-black);
   --color-pagination-current-text: var(--color-light-gray);
@@ -65,22 +66,41 @@ body {
   --color-filter-inactive-text: var(--color-silver);
 
   /* Product card */
-  --radius-product-card: 8px;
+  --radius-product-card: var(--radius-default);
   --color-product-card-border: var(--color-gray2);
   --color-product-card-text: var(--color-black2);
 
   /* Propose modal */
-  --color-figure-background: var(--color-secondary)
+  --color-figure-background: var(--color-secondary);
+
+  /* Form */
+  --color-form-border: var(--color-gray2);
+  --radius-form-border: var(--radius-default);
+  --form-padding: 2rem;
+  --color-placeholder-text: var(--color-ash);
+
 }
 
 
 @layer base {
-  h1,h2,h3,h4,h5,h6 {
+  h1, h2, h3, h4, h5, h6 {
     @apply font-semibold text-heading-large;
   }
 }
 
 @layer components {
+  .form {
+    label {
+      @apply flex flex-col capitalize gap-2;
+
+      input {
+        @apply border rounded-form-border p-3 placeholder-[var(--color-placeholder-text)];
+      }
+    }
+   
+    @apply border border-form-border 
+    rounded-form-border p-[var(--form-padding)] space-y-8 shadow-lg;
+  }
 
   .active-link {
     @apply bg-active-link-background rounded-active-link p-2;
@@ -106,6 +126,7 @@ body {
   .pagination-button--disabled {
     color: var(--color-pagination-button-disabled);
   }
+
   .pagination-button {
     color: var(--color-pagination-button);
   }
@@ -115,7 +136,7 @@ body {
     background: var(--color-filter-active-background);
     border: var(--color-filter-active-background);
   }
-  
+
   .filter-inactive {
     color: var(--color-filter-inactive-text);
     background: var(--color-filter-inactive-background);
@@ -123,10 +144,10 @@ body {
   }
 
   .success-message {
-    @apply bg-green-100 text-green-700 rounded text-center my-4 p-3;
+    @apply text-green-700 capitalize;
   }
 
   .error-message {
-    @apply bg-red-100 text-red-700 rounded text-center my-4 p-3 space-y-3;
+    @apply text-red-700 capitalize;
   }
 }

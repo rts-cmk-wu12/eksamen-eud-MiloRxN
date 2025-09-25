@@ -3,13 +3,20 @@ import RelatedProducts from "@/components/pages/details/related-products";
 import asyncFetch from "@/utils/async/async-fetch";
 import { readCookie } from "@/utils/async/cookies";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
   const product = await asyncFetch(`listings/${id}`);
 
-  return {
-    title: product.title
+  if (!product) {
+    return {
+      title: "Product Not Found"
+    };
+  } else {
+    return {
+      title: product.title
+    }
   };
 };
 
@@ -19,7 +26,11 @@ export default async function ProductDetails({ params }) {
 
   const userId = await readCookie("sh_user_id")
 
-  const formattedTime = product.asset.createdAt.split("T")[0];
+  const formattedTime = product?.asset.createdAt.split("T")[0];
+
+  if (!product) {
+    return notFound();
+  }
 
   return (
     <>

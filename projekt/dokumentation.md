@@ -11,15 +11,18 @@ Frontend
 
 Access_point: http://localhost:3000/
 
-<!-- Apiet  
+Apiet  
 `cd landrup-api`
 
 `npm install`
 
 `npm start`
 
-Access_point: http://localhost:4000/ -->
-<!-- Jeg har lavet valgfri opgave ? -->
+Access_point: http://localhost:4000/
+
+
+
+<!-- Jeg har lavet valgfri opgave ?
 
 ## Tech-stack
 * **Next.js.**  

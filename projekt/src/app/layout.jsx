@@ -1,3 +1,4 @@
+
 import Header from "@/components/layout/header";
 import "./globals.css";
 import Footer from "@/components/layout/footer";
@@ -15,7 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`antialiased flex flex-col min-h-screen mx-20`}>
         <Header/>
-        <main className="flex-1 mx-20 px-8">
+        <main className="flex-1 mx-20 p-8 relative">
           {children}
         </main>
         <Footer/>

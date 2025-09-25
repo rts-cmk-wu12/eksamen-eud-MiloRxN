@@ -1,9 +1,9 @@
 export default function FormFeedback({ errors, success }) {
   if (errors && errors.length > 0) {
     return (
-      <div className="error-message">
+      <div className="space-y-4">
         {errors.map((error, index) => (
-          <span key={index}>{error}</span>
+          <span className="error-message" key={index}>{error}</span>
         ))}
       </div>
     );

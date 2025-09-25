@@ -7,8 +7,10 @@ export const metadata = {
 function LoginPage() {
   return (
     <>
-      <h1 className="sr-only">Login</h1>
-      <LoginForm />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <h1 className="sr-only">Login</h1>
+        <LoginForm />
+      </div>
     </>
   );
 }
