@@ -1,6 +1,6 @@
 "use client";
 import { useState, useCallback } from "react";
-import { useListings } from "@/components/providers/listings-provider";
+import { useListings } from "@/components/pages/frontpage/provider";
 import { debounce } from "@/utils/debounce";
 import { IoSearch } from "react-icons/io5";
 
@@ -11,7 +11,7 @@ const SORT_OPTIONS = [
   { label: "Z-A", value: "za" },
 ];
 
-export default function ListingsSearchSort() {
+export default function SearchSort() {
   const { setSearch, setSort, search, sort } = useListings();
   const [input, setInput] = useState(search || "");
 

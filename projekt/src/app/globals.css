@@ -12,7 +12,7 @@
 
 body {
   font-family: "Inter";
-  @apply text-base;
+  @apply text-base max-w-[1200px] mx-auto;
 }
 
 @theme inline {
@@ -31,6 +31,7 @@ body {
   /* Text */
   --color-text-primary: var(--color-primary);
   --color-text-secondary: var(--color-secondary);
+  --text-heading-large: 1.625rem; /* 26px */
 
   /* Button */
   --color-button-primary: var(--color-black);
@@ -67,12 +68,15 @@ body {
   --radius-product-card: 8px;
   --color-product-card-border: var(--color-gray2);
   --color-product-card-text: var(--color-black2);
+
+  /* Propose modal */
+  --color-figure-background: var(--color-secondary)
 }
 
 
 @layer base {
   h1,h2,h3,h4,h5,h6 {
-    @apply font-bold
+    @apply font-semibold text-heading-large;
   }
 }
 
@@ -116,5 +120,13 @@ body {
     color: var(--color-filter-inactive-text);
     background: var(--color-filter-inactive-background);
     border-color: var(--color-filter-inactive-background);
+  }
+
+  .success-message {
+    @apply bg-green-100 text-green-700 rounded text-center my-4 p-3;
+  }
+
+  .error-message {
+    @apply bg-red-100 text-red-700 rounded text-center my-4 p-3 space-y-3;
   }
 }

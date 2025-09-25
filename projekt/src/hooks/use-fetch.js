@@ -1,7 +1,7 @@
 // Taget fra tidligere opgave
 "use client";
 
-import asyncFetch from "@/utils/async-fetch";
+import asyncFetch from "@/utils/async/async-fetch";
 import { useEffect, useState } from "react";
 
 export default function useFetch(endpoint) {

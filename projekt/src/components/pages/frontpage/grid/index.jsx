@@ -1,9 +1,17 @@
 "use client";
 
-import { useListings } from "@/components/providers/listings-provider";
+import { useListings } from "@/components/pages/frontpage/provider";
 import React from "react";
-import { columnClasses, rowClasses } from "./class-names";
-import { renderPagination } from "@/utils/renderPagination";
+import { renderPagination } from "@/components/pages/frontpage/grid/renderPagination";
+
+const rowClasses = {
+  1: "grid-rows-1",
+  2: "grid-rows-2",
+  3: "grid-rows-3",
+  4: "grid-rows-4",
+  5: "grid-rows-5",
+  6: "grid-rows-6",
+};
 
 export default function Grid({ pagination = false, columns = 3, rows, children }) {
   const { paginatedProducts, products, currentPage, setCurrentPage, totalPages } = useListings();

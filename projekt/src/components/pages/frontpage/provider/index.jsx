@@ -6,12 +6,10 @@ import { useRouter, useSearchParams } from "next/navigation";
 const ListingsContext = createContext();
 export const useListings = () => useContext(ListingsContext);
 
-
 export default function ListingsProvider({ children, products = [], productsPerPage = 6 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // State: only read from URL on mount
   const initialPage = parseInt(searchParams.get("page"), 10) || 1;
   const initialSearch = searchParams.get("search") || "";
 
@@ -19,7 +17,6 @@ export default function ListingsProvider({ children, products = [], productsPerP
   const [search, setSearchState] = useState(initialSearch);
   const [sort, setSort] = useState("new");
 
-  // Updates: URL for sharing/bookmarking
   useEffect(() => {
     const params = new URLSearchParams(Array.from(searchParams.entries()));
     params.set("page", currentPage);
@@ -27,13 +24,11 @@ export default function ListingsProvider({ children, products = [], productsPerP
     router.replace(`?${params.toString()}`, { scroll: false });
   }, [currentPage, search]);
 
-  // Client: Set search & page => 1
   const setSearch = (value) => {
     setSearchState(value);
     setCurrentPageState(1);
   };
 
-  // Filter by search (title, description, user firstname/lastname)
   const normalizedSearch = search.trim().toLowerCase();
   const filteredProducts = normalizedSearch
     ? products.filter((item) => {
@@ -50,7 +45,6 @@ export default function ListingsProvider({ children, products = [], productsPerP
       })
     : products;
 
-  // Sort filtered products
   const sortedProducts = filteredProducts.slice().sort((a, b) => {
     switch (sort) {
       case "old":
@@ -69,7 +63,6 @@ export default function ListingsProvider({ children, products = [], productsPerP
     }
   });
 
-  // Paginate
   const totalPages = Math.ceil(sortedProducts.length / productsPerPage);
   const paginatedProducts = sortedProducts.slice(
     (currentPage - 1) * productsPerPage,
