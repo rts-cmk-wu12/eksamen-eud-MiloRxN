@@ -4,18 +4,16 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import z from "zod";
 
-export default async function loginAction(prevState, formData){
+export default async function loginAction(prevState, formData) {
   console.log(formData);
   const { email, password } = Object.fromEntries(formData);
-  
+
   const schema = z.object({
-    email: z.email({ message: "Email is required" }),
+    email: z.string().min(1, { message: 'Email is required' }),
     password: z.string().min(1, { message: "Password is required" })
   })
 
-  const validated = schema.safeParse({
-    email, password
-  });
+  const validated = schema.safeParse({ email, password });
 
   if (!validated.success) return {
     ...validated,

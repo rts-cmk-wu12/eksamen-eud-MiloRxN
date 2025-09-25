@@ -11,7 +11,7 @@ export default async function Header() {
     <header className="flex items-center justify-between p-8 border-b-2 border-gray2 mb-12">
       <NavLink path="/" className="flex gap-2 items-center">
         <Image src={"/icons/logo.svg"} height={48} width={48} alt="Logo of SwapHub" />
-        <h1>SwapHub</h1>
+        <span>SwapHub</span>
       </NavLink>
 
       <nav className="flex items-center gap-4">
