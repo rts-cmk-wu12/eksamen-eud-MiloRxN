@@ -15,6 +15,7 @@ export default async function Home() {
 
   return (
     <>
+      <h1 className="sr-only">Listings</h1>
       <ListingsProvider products={products} productsPerPage={6}>
         <SearchSort />
         <Grid pagination={true} columns={3}>

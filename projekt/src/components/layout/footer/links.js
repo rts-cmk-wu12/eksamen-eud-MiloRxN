@@ -39,8 +39,8 @@ const links = {
         link: "#"
       },
       {
-        name: "Contact us",
-        link: "#"
+        name: "Newsletter",
+        link: "/newsletter"
       }
     ]
   },

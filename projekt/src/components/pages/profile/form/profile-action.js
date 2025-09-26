@@ -9,7 +9,7 @@ export default async function profileAction(prevState, formData) {
   const schema = z.object({
     firstname: z.string().min(1, { message: "First name is required" }),
     lastname: z.string().min(1, { message: "Last name is required" }),
-    email: z.string().email({ message: "Invalid email" }),
+    email: z.email({ message: "Invalid email" }),
     password: z.string().min(1, { message: "Password is required" })
   });
 
@@ -55,7 +55,7 @@ export default async function profileAction(prevState, formData) {
     };
   }
 
-  revalidatePath("/profile");
+  revalidatePath("localhost:3000/profile");
 
   return {
     success: true,

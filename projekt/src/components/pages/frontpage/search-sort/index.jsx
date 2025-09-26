@@ -5,7 +5,7 @@ import { debounce } from "@/utils/debounce";
 import { IoSearch } from "react-icons/io5";
 
 const SORT_OPTIONS = [
-  { label: "New", value: "new" },
+  { label: "Newest", value: "new" },
   { label: "Oldest", value: "old" },
   { label: "A-Z", value: "az" },
   { label: "Z-A", value: "za" },

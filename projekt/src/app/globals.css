@@ -94,8 +94,24 @@ body {
       @apply flex flex-col capitalize gap-2;
 
       input {
-        @apply border rounded-form-border p-3 placeholder-[var(--color-placeholder-text)];
+        @apply border border-form-border rounded-form-border p-3 placeholder-[var(--color-placeholder-text)];
       }
+
+      input[type=file] {
+        @apply text-placeholder-text border-form-border;
+      }
+    }
+
+    textarea{
+      @apply p-3 border border-form-border rounded-form-border placeholder-[var(--color-placeholder-text)];
+    }
+
+    select{
+      @apply p-3 border border-form-border rounded-form-border text-placeholder-text;
+    }
+
+    select option:not(:first-child){
+      @apply text-primary;
     }
    
     @apply border border-form-border 
@@ -144,10 +160,10 @@ body {
   }
 
   .success-message {
-    @apply text-green-700 capitalize;
+    @apply text-green-600 capitalize;
   }
 
   .error-message {
-    @apply text-red-700 capitalize;
+    @apply text-red-600 capitalize;
   }
 }

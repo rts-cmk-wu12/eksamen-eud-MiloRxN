@@ -17,8 +17,6 @@ export default async function ProfilePage() {
     }
   });
 
-  console.log(user)
-
   return (
     <>
       <h1 className="sr-only">Profile</h1>

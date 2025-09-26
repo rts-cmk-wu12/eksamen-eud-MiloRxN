@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const PROTECTED_ROUTES = ['/dashboard', '/profile'];
+const PROTECTED_ROUTES = ['/dashboard', '/profile', '/my-listings'];
 const AUTH_ROUTES = ['/login', '/register'];
 
 const SECURITY_HEADERS = {
@@ -22,7 +22,7 @@ export function middleware(request) {
 
   if (PROTECTED_ROUTES.some(route => pathname.startsWith(route))) {
     if (!token) {
-      url.pathname = '/not-authorised';
+      url.pathname = '/not-authorized';
       return NextResponse.redirect(url);
     }
   }

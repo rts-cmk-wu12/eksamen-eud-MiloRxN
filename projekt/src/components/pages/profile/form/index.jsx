@@ -1,20 +1,22 @@
 "use client";
+
 import { useActionState } from "react";
 import profileAction from "./profile-action";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function ProfileForm({ user }) {
   const [formState, formAction, pending] = useActionState(profileAction);
-  
-  console.log(user)
-  
+  const [showSuccess, setShowSuccess] = useState(false);
+
   useEffect(() => {
-    console.log("formstate", formState)
-  }, [formState])
+    setShowSuccess(true);
+    const timer = setTimeout(() => setShowSuccess(false), 3000);
+    return () => clearTimeout(timer);
+
+  }, [formState?.message]);
 
   return (
-    <form action={formAction} className="form">
-      <h2>Update Profile</h2>
+    <form action={formAction} className="form max-w-xl mx-auto">
       <div className="flex gap-4">
         <label className="w-full">
           <span>First name</span>
@@ -37,7 +39,6 @@ export default function ProfileForm({ user }) {
         </label>
       </div>
 
-      {/* Email */}
       <label>
         <span>Email</span>
         <input
@@ -47,8 +48,7 @@ export default function ProfileForm({ user }) {
         />
         <span className="error-message">{formState?.properties?.email?.errors}</span>
       </label>
-
-      {/* Password */}
+ 
       <label>
         <span>Password</span>
         <input
@@ -67,8 +67,9 @@ export default function ProfileForm({ user }) {
         {pending ? "Updating..." : "Update profile"}
       </button>
 
-      <p className="success-message"></p>
+      {showSuccess && (
+        <p className="success-message">{formState?.message}</p>
+      )}
     </form>
-
   );
 }

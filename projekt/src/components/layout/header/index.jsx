@@ -1,3 +1,4 @@
+import { logoutAction } from "@/components/actions/logout-action";
 import NavLink from "@/components/ui/nav-link";
 import { readCookie } from "@/utils/async/cookies";
 import Image from "next/image";
@@ -22,13 +23,13 @@ export default async function Header() {
             </NavLink>
           </li>
           <li className="">
-            <NavLink path="#" activeStyle={"active-link"}>
-              Community
+            <NavLink path="/my-listings" activeStyle={"active-link"}>
+              My listings
             </NavLink>
           </li>
           <li className="">
-            <NavLink path="#" activeStyle={"active-link"}>
-              Contact
+            <NavLink path="/newsletter" activeStyle={"active-link"}>
+              Newsletter
             </NavLink>
           </li>
         </ul>
@@ -36,19 +37,22 @@ export default async function Header() {
         <div className="space-x-4">
           {userId ? (
             <>
-              <NavLink path={"/profile"} className="button-secondary">
-                profile
+              <NavLink path={"/profile"} activeStyle={"active-link"}>
+                Profile
               </NavLink>
-              <NavLink path={"/logout"} className="button-primary">
-                Logout
-              </NavLink>
+
+              <form action={logoutAction} className="inline">
+                <button type="submit" className="button-primary border-0">
+                  Logout
+                </button>
+              </form>
             </>
           ) : (
             <>
-              <NavLink path={"/login"} className="button-secondary">
+                <NavLink path={"/login"} className="button-primary">
                 Sign in
               </NavLink>
-              <NavLink path={"#"} className="button-primary">
+              <NavLink path={"/register"} className="button-secondary">
                 Register
               </NavLink>
             </>
