@@ -1,42 +1,169 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: optional;
+  src: url("/fonts/inter-variablefont.ttf") format("TrueType");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+body {
+  font-family: "Inter";
+  @apply text-base max-w-[1200px] mx-auto;
+}
+
+@theme inline {
+
+  /* Colors */
+  --color-primary: #000;
+  --color-secondary: #fff;
+  --color-gray: #e3e3e3;
+  --color-black: #2c2c2c;
+  --color-black2: #1e1e1e;
+  --color-light-gray: #f5f5f5;
+  --color-ash: #b3b3b3;
+  --color-silver: #757575;
+  --color-gray2: #d9d9d9;
+
+  --radius-default: 0.5rem;
+
+  /* Text */
+  --color-text-primary: var(--color-primary);
+  --color-text-secondary: var(--color-secondary);
+  --text-heading-large: 1.625rem;
+
+  /* Button */
+  --color-button-primary: var(--color-black);
+  --color-button-primary-text: var(--color-light-gray);
+  --color-button-primary-border: var(--color-black);
+  --color-button-secondary: var(--color-gray);
+  --color-button-secondary-text: var(--color-black2);
+  --color-button-secondary-border: var(--color-silver);
+  --radius-button: var(--radius-default);
+
+  /* Links */
+  --color-active-link-background: var(--color-light-gray);
+  --radius-active-link: var(--radius-default);
+
+  /* Search */
+  --color-search-border: var(--color-gray2);
+  --color-search-placeholder: var(--color-ash);
+  --color-search-icon: var(--color-black2);
+
+  /* Pagination */
+  --color-pagination-current: var(--color-black);
+  --color-pagination-current-text: var(--color-light-gray);
+  --color-pagination-text: var(--color-black2);
+  --color-pagination-button-disabled: var(--color-silver);
+  --color-pagination-button: var(--color-black2);
+
+  /* Filters */
+  --color-filter-active-background: var(--color-black);
+  --color-filter-active-text: var(--color-light-gray);
+  --color-filter-inactive-background: var(--color-light-gray);
+  --color-filter-inactive-text: var(--color-silver);
+
+  /* Product card */
+  --radius-product-card: var(--radius-default);
+  --color-product-card-border: var(--color-gray2);
+  --color-product-card-text: var(--color-black2);
+
+  /* Propose modal */
+  --color-figure-background: var(--color-secondary);
+
+  /* Form */
+  --color-form-border: var(--color-gray2);
+  --radius-form-border: var(--radius-default);
+  --form-padding: 2rem;
+  --color-placeholder-text: var(--color-ash);
+
+}
+
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold text-heading-large;
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
+@layer components {
+  .form {
+    label {
+      @apply flex flex-col capitalize gap-2;
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+      input {
+        @apply border border-form-border rounded-form-border p-3 placeholder-[var(--color-placeholder-text)];
+      }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+      input[type=file] {
+        @apply text-placeholder-text border-form-border;
+      }
+    }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+    textarea{
+      @apply p-3 border border-form-border rounded-form-border placeholder-[var(--color-placeholder-text)];
+    }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+    select{
+      @apply p-3 border border-form-border rounded-form-border text-placeholder-text;
+    }
+
+    select option:not(:first-child){
+      @apply text-primary;
+    }
+   
+    @apply border border-form-border 
+    rounded-form-border p-[var(--form-padding)] space-y-8 shadow-lg;
+  }
+
+  .active-link {
+    @apply bg-active-link-background rounded-active-link p-2;
+  }
+
+  .button-primary {
+    @apply rounded-button border-2 border-button-primary-border px-3 py-1 text-button-primary-text bg-button-primary;
+  }
+
+  .button-secondary {
+    @apply rounded-button border-2 border-button-secondary-border px-3 py-1 text-button-secondary-text bg-button-secondary;
+  }
+
+  .pagination-current {
+    background: var(--color-pagination-current);
+    color: var(--color-pagination-current-text);
+  }
+
+  .pagination-default {
+    color: var(--color-pagination-text);
+  }
+
+  .pagination-button--disabled {
+    color: var(--color-pagination-button-disabled);
+  }
+
+  .pagination-button {
+    color: var(--color-pagination-button);
+  }
+
+  .filter-active {
+    color: var(--color-filter-active-text);
+    background: var(--color-filter-active-background);
+    border: var(--color-filter-active-background);
+  }
+
+  .filter-inactive {
+    color: var(--color-filter-inactive-text);
+    background: var(--color-filter-inactive-background);
+    border-color: var(--color-filter-inactive-background);
+  }
+
+  .success-message {
+    @apply text-green-600 capitalize;
+  }
+
+  .error-message {
+    @apply text-red-600 capitalize;
   }
 }
